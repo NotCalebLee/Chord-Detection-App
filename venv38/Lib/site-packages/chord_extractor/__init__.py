@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+
+# Chord Extractor
+# Copyright (C) 2021-22  Oliver Holloway
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+"""
+Python library for extracting chord sequences from sound files of multiple formats with the option of leveraging
+multiprocessing to source data from many files quickly. The extraction process wraps Chordino
+(http://www.isophonics.net/nnls-chroma) but is extensible to easily incorporate additional techniques.
+
+Simple usage::
+
+    from chord_extractor.extractors import Chordino
+
+    chordino = Chordino(roll_on=1)
+
+    # Optional, only if we need to extract from a file that isn't accepted by librosa
+    conversion_file_path = chordino.preprocess('/some_path/some_song.mid')
+
+    chords = chordino.extract(conversion_file_path)
+    # => [  ChordChange(chord='N', timestamp=0.371519274),
+    #       ChordChange(chord='C', timestamp=0.743038548),
+    #       ChordChange(chord='Am7b5', timestamp=8.54494331),...]
+
+Extract from many files with multiprocessing::
+
+    from chord_extractor.extractors import Chordino
+    from chord_extractor import clear_conversion_cache, LabelledChordSequence
+
+    files_to_extract_from = [
+      '/path/file1.mid',
+      '/path/file2.wav',
+      '/path/file3.mp3',
+      '/path/file4.ogg'
+    ]
+
+    def save_to_db_cb(results: LabelledChordSequence):
+        # Every time one of the files has had chords extracted, receive the chords here
+        # along with the name of the original file and then run some logic here, e.g. to
+        # save the latest data to DB
+
+    chordino = Chordino(roll_on=1)
+
+    # Optionally clear cache of file conversions (e.g. wav files that have been converted from midi)
+    clear_conversion_cache()
+    res = chordino.extract_many(files_to_extract_from, callback=save_to_db_cb, num_extractors=2,
+                                num_preprocessors=2, max_files_in_cache=10, stop_on_error=False)
+    # => LabelledChordSequence(
+    #	    id='/tmp/extractor/d8b8ab2f719e8cf40e7ec01abd116d3a',
+    #	    sequence=[ChordChange(chord='N', timestamp=0.371519274),
+    #	        ChordChange(chord='C', timestamp=0.743038548),
+    #	        ChordChange(chord='Am7b5', timestamp=8.54494331),...])
+"""
+
+from .base import ChordExtractor, clear_conversion_cache
+from .outputs import ChordChange, LabelledChordSequence
+
+__all__ = ['ChordExtractor', 'clear_conversion_cache', 'ChordChange', 'LabelledChordSequence']
