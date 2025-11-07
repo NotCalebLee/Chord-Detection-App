@@ -1,0 +1,13 @@
+chord_extractor/__init__.py,sha256=XdmeLyTFZ4duClzwpNRAJ9EYdSmoUgeCPnzArfu1eEc,3060
+chord_extractor/base.py,sha256=fzHVGcmFh32iOk-G1giT7oq1ggI56daVYOjWRtvrTR8,7881
+chord_extractor/converters.py,sha256=dg10zxbdH6fED--W8z19eSU9UUtTFyvApsbhJP8fZ38,2085
+chord_extractor/outputs.py,sha256=g48rNc5kzJ87vpRUb5cOWDz0xq8kt4j-FMnFzfW4Yr4,1611
+chord_extractor/version.py,sha256=l01nKCY4PWLTJr6JXZu0OA_sZetT-SzTLVtU_99Baog,811
+chord_extractor/_lib/nnls-chroma.so,sha256=Ai8Yt6C5IhYbul8pK5Fkgv0E2brUyHUpLSXBQfmMfZk,1215403
+chord_extractor/extractors/__init__.py,sha256=Hd0AKtrepFa-SUCxh8T0p7HPsWSS2WQqf9CZe0IvNBw,1016
+chord_extractor/extractors/chordino.py,sha256=-FzJjiKaKgkN88gk73OjQJKLFa0GOHX2YJ4nRmnUjuo,4495
+chord_extractor-0.1.3.dist-info/LICENSE,sha256=gXf5dRMhNSbfLPYYTY_5hsZ1r7UU1OaKQEAQUhuIBkM,18092
+chord_extractor-0.1.3.dist-info/METADATA,sha256=EXHk0su6l-ScA72mlkHgPqvnR9qMGIy0GlIvrcdYL6k,6554
+chord_extractor-0.1.3.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+chord_extractor-0.1.3.dist-info/top_level.txt,sha256=MTVXrnzFZEylHbDxUIDBVVDo2OU4D6gaT1J22ZGKdnY,16
+chord_extractor-0.1.3.dist-info/RECORD,,
